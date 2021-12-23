@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8'/>
+    <title>Movie recommendation</title>
+    <link rel='stylesheet' href='/static/stylesheets/style.css'/>
+  </head>
+  <body>
+    <header class='form-header'>
+      <h1>Movie Recommendation</h1>
+      <p><em>Think back to your films and rate them. And we recommend you movies that you like</em></p>
+    </header>
+
+    <form action = "/add/" method="post" class='mov-form'>
+        <div class='form-row'>
+            <label for='name'>Movie name</label>
+            <input id='movie_name' name='movie_name' type='text'/>
+        </div>
+        
+        <div class='form-row'>
+            <label for='rating'>Rating</label>
+            <select id='rating' name='rating'>
+              <option value='1'>1</option>
+              <option value='2'>2</option>
+              <option value='3'>3</option>
+              <option value='4'>4</option>
+              <option value='5'>5</option>
+            </select>
+        </div>
+
+        <div class='form-row'>
+            <button>Add</button>
+        </div>
+    </form>
+
+    <div class="rated-list">
+        {% if addedMovies is defined and addedMovies|length > 0 %}
+        <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Movies that you rated</th>
+              </tr>
+            </thead>
+             <tbody>
+             {% for movie in addedMovies %}
+                <tr>
+                    <td>{{ movie }}</td>
+                </tr>
+             {% endfor %}
+             </tbody>
+        </table>
+        <form class="form-horizontal" action = "/prediction/" method="post">
+            <div class='form-row'>
+                <button>Predict</button>
+                <button>Show recommendations</button>
+            </div>
+        </form>
+        
+       {% endif %}
+    </div>
+  </body>
+</html>

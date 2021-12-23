@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8'/>
+    <title>Movie recommendation</title>
+    <link rel='stylesheet' href='/static/stylesheets/style.css'/>
+  </head>
+  <body>
+    <header class='form-header'>
+      <h1>TOP 10 Recommended Movies</h1>
+    </header>
+
+    <form class='mov-form'>
+        {% if my_list %}
+        <div class="container">
+            <table class="styled-table-result">
+                <thead>
+                    <tr>
+                        <th>Movie Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movie in my_list %}
+                        <tr>
+                            <td>{{ movie }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div> 
+    {% endif %}
+    </form>
+  </body>
+</html>
